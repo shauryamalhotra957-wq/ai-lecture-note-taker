@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Lecture Note Taker</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="tool">
+        <div class="mast">
+          <div>
+            <p class="eyebrow">Project 9</p>
+            <h1>AI Lecture Note Taker</h1>
+          </div>
+          <div class="status" id="health">Checking</div>
+        </div>
+
+        <form id="uploadForm" class="upload" autocomplete="off">
+          <label class="drop" id="dropZone">
+            <input id="file" name="file" type="file" accept="audio/*,video/*,.txt,.md,.srt,.vtt" required />
+            <span class="drop-title" id="fileLabel">Choose lecture recording</span>
+            <span class="drop-meta">Audio, video, or transcript</span>
+          </label>
+          <canvas id="waveform" width="900" height="96"></canvas>
+          <div class="controls">
+            <label>
+              <span>Topic</span>
+              <input id="topic" name="topic" type="text" placeholder="Optional title" />
+            </label>
+            <label class="toggle">
+              <input id="demoMode" name="demo_mode" type="checkbox" />
+              <span>Demo mode</span>
+            </label>
+            <button type="submit" id="submitBtn">Generate Notes</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="result" class="result hidden">
+        <div class="result-head">
+          <div>
+            <p class="eyebrow">Study Pack</p>
+            <h2 id="title">Notes</h2>
+          </div>
+          <div class="actions">
+            <a id="markdownLink" class="button secondary" href="#">Markdown</a>
+            <a id="jsonLink" class="button secondary" href="#">JSON</a>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="panel wide">
+            <h3>Summary</h3>
+            <ul id="summary"></ul>
+          </article>
+          <article class="panel">
+            <h3>Key Concepts</h3>
+            <div id="concepts" class="stack"></div>
+          </article>
+          <article class="panel">
+            <h3>Quiz</h3>
+            <div id="quiz" class="stack"></div>
+          </article>
+          <article class="panel wide">
+            <h3>Study Guide</h3>
+            <div id="guide" class="guide"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,277 @@
+:root {
+  color-scheme: light;
+  --ink: #17202a;
+  --muted: #64748b;
+  --line: #d9e2ec;
+  --paper: #f8fafc;
+  --panel: #ffffff;
+  --blue: #2563eb;
+  --teal: #0f766e;
+  --rose: #be123c;
+  --amber: #b45309;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+.tool {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.result {
+  margin-top: 24px;
+}
+
+.mast,
+.result-head,
+.controls,
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 56px;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.status {
+  min-width: 96px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.upload {
+  margin-top: 22px;
+}
+
+.drop {
+  display: grid;
+  place-items: center;
+  min-height: 152px;
+  border: 2px dashed #9fb3c8;
+  border-radius: 8px;
+  background: #f1f5f9;
+  cursor: pointer;
+}
+
+.drop input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+}
+
+.drop-title {
+  display: block;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.drop-meta {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#waveform {
+  display: block;
+  width: 100%;
+  height: 96px;
+  margin: 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.controls label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.controls input[type="text"] {
+  width: min(420px, 54vw);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 11px 12px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.toggle {
+  display: flex !important;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 9px !important;
+  color: var(--ink) !important;
+}
+
+button,
+.button {
+  appearance: none;
+  border: 1px solid var(--blue);
+  border-radius: 6px;
+  background: var(--blue);
+  color: #ffffff;
+  padding: 11px 16px;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.button.secondary {
+  background: #ffffff;
+  color: var(--blue);
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  min-width: 0;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+ul {
+  margin: 0;
+  padding-left: 19px;
+}
+
+li {
+  margin: 7px 0;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.item {
+  border-left: 4px solid var(--teal);
+  padding-left: 12px;
+}
+
+.item.quiz {
+  border-left-color: var(--rose);
+}
+
+.item h4 {
+  margin: 0 0 5px;
+  font-size: 15px;
+}
+
+.item p {
+  margin: 4px 0;
+  color: var(--muted);
+}
+
+.guide {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.guide-block {
+  border-top: 4px solid var(--amber);
+  padding-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .mast,
+  .result-head,
+  .controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+
+  .controls input[type="text"] {
+    width: 100%;
+  }
+
+  .grid,
+  .guide {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+}

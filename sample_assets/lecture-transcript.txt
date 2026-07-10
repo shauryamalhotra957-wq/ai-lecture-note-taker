@@ -1,0 +1,2 @@
+Retrieval augmented generation is a pattern for connecting a language model to trusted source material. The system first retrieves relevant passages from a knowledge base. Then it gives those passages to the model as grounding context. This matters because grounded answers are easier to verify than unsupported answers. Chunking controls how documents are divided. Embeddings make semantic search possible. Ranking decides which passages deserve the most attention. A good RAG system cites its sources, measures answer quality, and exposes uncertainty when the evidence is weak.
+
