@@ -6,6 +6,15 @@ Upload a lecture recording or transcript and get clean notes, key concepts, quiz
 
 Tech stack: Python, FastAPI, OpenAI Whisper-compatible transcription API.
 
+## Project Snapshot
+
+| Area | Detail |
+| --- | --- |
+| Experience | Study-pack generator for lecture recordings or transcripts |
+| Core system | Transcript cleanup, notes, concepts, quiz questions, study guides, exports |
+| Design signal | Simple upload-to-results flow with deterministic demo mode |
+| Quality signal | Pytest CI on Python 3.11 and 3.12 |
+
 ## Run
 
 ```powershell
