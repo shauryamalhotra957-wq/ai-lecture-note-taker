@@ -1,5 +1,7 @@
 # AI Lecture Note Taker
 
+[![tests](https://github.com/shauryamalhotra957-wq/ai-lecture-note-taker/actions/workflows/tests.yml/badge.svg)](https://github.com/shauryamalhotra957-wq/ai-lecture-note-taker/actions/workflows/tests.yml)
+
 Upload a lecture recording or transcript and get clean notes, key concepts, quiz questions, and a study guide.
 
 Tech stack: Python, FastAPI, OpenAI Whisper-compatible transcription API.
@@ -57,6 +59,8 @@ You can upload `.txt`, `.md`, `.srt`, or `.vtt` files as transcript demos, or au
 ```powershell
 .\.venv\Scripts\python.exe -m pytest
 ```
+
+GitHub Actions runs the same pytest suite on Python 3.11 and 3.12 for pushes and pull requests.
 
 ## Sample
 
