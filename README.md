@@ -75,3 +75,7 @@ GitHub Actions runs the same pytest suite on Python 3.11 and 3.12 for pushes and
 
 Use `sample_assets/lecture-transcript.txt` for an instant demo.
 
+## Experience Design
+
+The study workspace follows the [Lecture Note Taker design system](design-system/ai-lecture-note-taker/MASTER.md), using calm contrast, explicit processing states, accessible controls, responsive reading surfaces, and reduced-motion behavior.
+
