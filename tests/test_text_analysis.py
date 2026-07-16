@@ -1,4 +1,10 @@
-from ai_media_lab.common.text_analysis import analyze_lecture_text, clean_transcript, segment_text
+from ai_media_lab.common.text_analysis import (
+    analyze_lecture_text,
+    clean_transcript,
+    extract_keywords,
+    segment_text,
+    split_sentences,
+)
 
 
 LECTURE_TEXT = """
@@ -30,4 +36,15 @@ def test_segment_text_creates_monotonic_segments():
     assert segments
     assert all(segment.end > segment.start for segment in segments)
     assert segments == sorted(segments, key=lambda segment: segment.start)
+
+
+def test_text_analysis_supports_unicode_words_and_sentence_endings():
+    text = "La información mejora decisiones。L'analyse protège les étudiants！"
+
+    assert split_sentences(text) == [
+        "La información mejora decisiones。",
+        "L'analyse protège les étudiants！",
+    ]
+    assert "información" in extract_keywords(text)
+    assert "protège" in extract_keywords(text)
 

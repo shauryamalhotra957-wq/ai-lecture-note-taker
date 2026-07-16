@@ -71,14 +71,14 @@ def split_sentences(text: str) -> list[str]:
     normalized = clean_transcript(text)
     if not normalized:
         return []
-    sentences = re.split(r"(?<=[.!?])\s+", normalized)
+    sentences = re.split(r"(?<=[.!?])\s+|(?<=[。！？])", normalized)
     return [sentence.strip() for sentence in sentences if sentence.strip()]
 
 
 def tokenize(text: str) -> list[str]:
     return [
         token.lower()
-        for token in re.findall(r"[A-Za-z][A-Za-z0-9-]{2,}", text)
+        for token in re.findall(r"[^\W\d_][\w-]{2,}", text, flags=re.UNICODE)
         if token.lower() not in STOPWORDS
     ]
 
