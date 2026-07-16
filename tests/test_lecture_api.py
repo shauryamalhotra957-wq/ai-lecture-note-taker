@@ -30,3 +30,19 @@ def test_lecture_upload_returns_complete_study_pack(tmp_path, monkeypatch):
     assert markdown.status_code == 200
     assert "## Quiz" in markdown.text
 
+
+def test_lecture_upload_rejects_oversized_file_without_partial_artifact(tmp_path, monkeypatch):
+    monkeypatch.setenv("AI_MEDIA_DATA_DIR", str(tmp_path))
+    monkeypatch.setenv("AI_MEDIA_MAX_UPLOAD_BYTES", "8")
+    client = TestClient(app)
+
+    response = client.post(
+        "/api/analyze",
+        files={"file": ("lecture.txt", b"ninebytes", "text/plain")},
+        data={"demo_mode": "true"},
+    )
+
+    assert response.status_code == 413
+    assert response.json()["detail"] == "Upload exceeds the 8-byte limit"
+    assert list((tmp_path / "lecture" / "uploads").iterdir()) == []
+

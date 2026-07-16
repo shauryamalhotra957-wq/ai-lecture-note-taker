@@ -5,7 +5,7 @@ from pathlib import Path
 from fastapi import UploadFile
 from pydantic import ValidationError
 
-from ai_media_lab.common.config import service_path
+from ai_media_lab.common.config import get_settings, service_path
 from ai_media_lab.common.files import new_job_id, save_upload, write_json
 from ai_media_lab.common.openai_service import generate_json_with_openai, transcribe_media
 from ai_media_lab.common.schemas import LectureAnalysis, LectureJobResult
@@ -64,7 +64,11 @@ def _maybe_ai_enrich(base: LectureAnalysis) -> LectureAnalysis:
 
 async def process_lecture_upload(upload: UploadFile, topic: str | None, demo_mode: bool = False) -> LectureJobResult:
     job_id = new_job_id("lecture")
-    upload_path = await save_upload(upload, service_path("lecture", "uploads"))
+    upload_path = await save_upload(
+        upload,
+        service_path("lecture", "uploads"),
+        max_bytes=get_settings().max_upload_bytes,
+    )
     transcript = transcribe_media(upload_path, kind="lecture", prefer_segments=False, force_demo=demo_mode)
     base_analysis = analyze_lecture_text(transcript.text, topic=topic)
     analysis = base_analysis if demo_mode else _maybe_ai_enrich(base_analysis)
