@@ -29,6 +29,14 @@ def env_flag(name: str, default: bool = False) -> bool:
     return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
+def env_positive_int(name: str, default: int) -> int:
+    try:
+        value = int(os.getenv(name, str(default)))
+    except ValueError:
+        return default
+    return value if value > 0 else default
+
+
 @dataclass(frozen=True)
 class AppSettings:
     data_dir: Path
@@ -36,6 +44,7 @@ class AppSettings:
     transcribe_model: str
     text_model: str
     force_demo: bool
+    max_upload_bytes: int
 
     @property
     def openai_enabled(self) -> bool:
@@ -53,6 +62,7 @@ def get_settings() -> AppSettings:
         transcribe_model=os.getenv("OPENAI_TRANSCRIBE_MODEL", "whisper-1"),
         text_model=os.getenv("OPENAI_TEXT_MODEL", "gpt-5.6"),
         force_demo=env_flag("AI_MEDIA_FORCE_DEMO", False),
+        max_upload_bytes=env_positive_int("AI_MEDIA_MAX_UPLOAD_BYTES", 512 * 1024 * 1024),
     )
 
 

@@ -7,6 +7,7 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from ai_media_lab.common.files import UploadTooLargeError
 from ai_media_lab.lecture.service import process_lecture_upload, result_file
 
 
@@ -36,7 +37,10 @@ async def analyze(
     topic: Annotated[str | None, Form()] = None,
     demo_mode: Annotated[bool, Form()] = False,
 ):
-    return await process_lecture_upload(file, topic=topic, demo_mode=demo_mode)
+    try:
+        return await process_lecture_upload(file, topic=topic, demo_mode=demo_mode)
+    except UploadTooLargeError as error:
+        raise HTTPException(status_code=413, detail=str(error)) from error
 
 
 @app.get("/api/results/{artifact}")

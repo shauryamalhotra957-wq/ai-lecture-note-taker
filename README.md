@@ -42,6 +42,7 @@ OPENAI_TRANSCRIBE_MODEL=whisper-1
 ```
 
 You can upload `.txt`, `.md`, `.srt`, or `.vtt` files as transcript demos, or audio/video files for transcription.
+Uploads are capped at 512 MiB by default to prevent partial files from exhausting storage. Set `AI_MEDIA_MAX_UPLOAD_BYTES` to a positive byte count to adjust the limit.
 
 ## Features
 
